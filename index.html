@@ -235,6 +235,10 @@ input[type=text],input[type=password],input[type=search],textarea{background:var
 .acc button{width:34px;height:34px;border-radius:50%;border:2px solid transparent}
 .acc button[aria-pressed=true]{border-color:var(--fg);box-shadow:0 0 0 2px var(--bg) inset}
 .top h1.wm{font-size:34px;line-height:1.1}
+.music{display:inline-flex;align-items:center;gap:6px;padding:6px 12px;border-radius:999px;background:var(--glass);border:1px solid var(--gline);font-size:13px;max-width:100%}
+.music[aria-pressed=true]{background:var(--accent);color:var(--ink);border-color:transparent}
+.music span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.rl1 .mu,.sv .mu{font-size:13px;opacity:.9;margin-bottom:4px}
 </style></head><body><div id="root"></div><div id="ovs"></div><div id="toast" class="toast" hidden></div>
 <script>const L = {
 en: {
@@ -250,7 +254,7 @@ search_ph: 'Search people', suggested: 'Suggested', no_users: 'No people found',
 no_chats: 'No chats yet', find_people: 'Find people', say_hi: 'Say hi 👋', you: 'You',
 report: 'Report', reported: 'Thanks, we will review it.', r_nudity: 'Nudity or 18+', r_violence: 'Weapons or violence', r_spam: 'Spam or scam', r_other: 'Other', block_user: 'Block user', unblock: 'Unblock', blocked: 'User blocked', unblocked: 'User unblocked', block_q: 'Block @{u}? They will not see your profile or be able to message you.', del_q: 'Delete this post?',
 mod_blocked: 'This content is not allowed.', mod_warn: 'Warning {n} of {max}. Your account will be banned at {max}.', banned_t: 'Account banned', banned_d: 'Your account was banned for breaking the Community Rules.',
-since_y: 'Since {y}', accent: 'Accent color', chat_search: 'Search chats', settings: 'Settings', language: 'Language', theme: 'Theme', th_auto: 'Auto', th_dark: 'Dark', th_light: 'Light', verified: 'Verified badge', v_on: 'Active until {d}', v_off: 'You do not have the badge.', v_note: 'The first 10 users get it free for 1 month. Paid verification will be available through Google Play.', logout: 'Log out', delete_acc: 'Delete account', delete_acc_q: 'Delete your account forever? Posts, messages and files will be removed.', acc_deleted: 'Account deleted',
+music: 'Music', music_pick: 'Add music from your phone', music_big: 'Audio file is too large (max 12 MB).', only_aud: 'Please choose an audio file.', music_note: 'Use only music you have the right to use. Rights holders can report content and it will be removed.', since_y: 'Since {y}', accent: 'Accent color', chat_search: 'Search chats', settings: 'Settings', language: 'Language', theme: 'Theme', th_auto: 'Auto', th_dark: 'Dark', th_light: 'Light', verified: 'Verified badge', v_on: 'Active until {d}', v_off: 'You do not have the badge.', v_note: 'The first 10 users get it free for 1 month. Paid verification will be available through Google Play.', logout: 'Log out', delete_acc: 'Delete account', delete_acc_q: 'Delete your account forever? Posts, messages and files will be removed.', acc_deleted: 'Account deleted',
 admin: 'Admin', ad_stats: 'Stats', ad_users: 'Users', ad_reports: 'Reports', ad_note: 'Numbers come from the server database.', ban: 'Ban', unban: 'Unban', verify: 'Verify 30d', unverify: 'Remove badge', is_banned: 'banned', dismiss: 'Dismiss', no_reports: 'No reports', by: 'by', hidden: 'hidden',
 s_users: 'Users', s_online: 'Online now', s_active24: 'Active 24h', s_banned: 'Banned', s_posts: 'Posts', s_reels: 'Reels', s_stories: 'Stories', s_comments: 'Comments', s_voice_comments: 'Voice comments', s_photo_comments: 'Photo comments', s_likes: 'Likes', s_chats: 'Chats', s_messages: 'Messages', s_voice_msgs: 'Voice messages', s_photo_msgs: 'Photo messages', s_reports: 'Open reports',
 ago_now: 'now', ago_m: '{n}m', ago_h: '{n}h', ago_d: '{n}d'
@@ -268,7 +272,7 @@ search_ph: 'Поиск людей', suggested: 'Рекомендуем', no_user
 no_chats: 'Чатов пока нет', find_people: 'Найти людей', say_hi: 'Скажите привет 👋', you: 'Вы',
 report: 'Пожаловаться', reported: 'Спасибо, мы проверим.', r_nudity: 'Обнажёнка или 18+', r_violence: 'Оружие или насилие', r_spam: 'Спам или мошенничество', r_other: 'Другое', block_user: 'Заблокировать', unblock: 'Разблокировать', blocked: 'Пользователь заблокирован', unblocked: 'Пользователь разблокирован', block_q: 'Заблокировать @{u}? Он не увидит ваш профиль и не сможет вам писать.', del_q: 'Удалить эту публикацию?',
 mod_blocked: 'Такой контент запрещён.', mod_warn: 'Предупреждение {n} из {max}. При {max} аккаунт блокируется.', banned_t: 'Аккаунт заблокирован', banned_d: 'Ваш аккаунт заблокирован за нарушение Правил сообщества.',
-since_y: 'С {y} года', accent: 'Цвет акцента', chat_search: 'Поиск в чатах', settings: 'Настройки', language: 'Язык', theme: 'Тема', th_auto: 'Авто', th_dark: 'Тёмная', th_light: 'Светлая', verified: 'Галочка верификации', v_on: 'Действует до {d}', v_off: 'У вас нет галочки.', v_note: 'Первые 10 пользователей получают её бесплатно на 1 месяц. Платная верификация появится через Google Play.', logout: 'Выйти', delete_acc: 'Удалить аккаунт', delete_acc_q: 'Удалить аккаунт навсегда? Посты, сообщения и файлы будут удалены.', acc_deleted: 'Аккаунт удалён',
+music: 'Музыка', music_pick: 'Добавить музыку с телефона', music_big: 'Аудиофайл слишком большой (макс. 12 МБ).', only_aud: 'Выберите аудиофайл.', music_note: 'Используйте только музыку, на которую у вас есть права. Правообладатели могут пожаловаться, и контент будет удалён.', since_y: 'С {y} года', accent: 'Цвет акцента', chat_search: 'Поиск в чатах', settings: 'Настройки', language: 'Язык', theme: 'Тема', th_auto: 'Авто', th_dark: 'Тёмная', th_light: 'Светлая', verified: 'Галочка верификации', v_on: 'Действует до {d}', v_off: 'У вас нет галочки.', v_note: 'Первые 10 пользователей получают её бесплатно на 1 месяц. Платная верификация появится через Google Play.', logout: 'Выйти', delete_acc: 'Удалить аккаунт', delete_acc_q: 'Удалить аккаунт навсегда? Посты, сообщения и файлы будут удалены.', acc_deleted: 'Аккаунт удалён',
 admin: 'Админ', ad_stats: 'Статистика', ad_users: 'Пользователи', ad_reports: 'Жалобы', ad_note: 'Цифры берутся из серверной базы.', ban: 'Бан', unban: 'Разбан', verify: 'Галочка 30 дн.', unverify: 'Убрать галочку', is_banned: 'в бане', dismiss: 'Отклонить', no_reports: 'Жалоб нет', by: 'от', hidden: 'скрыто',
 s_users: 'Пользователи', s_online: 'Онлайн сейчас', s_active24: 'Активны за 24 ч', s_banned: 'В бане', s_posts: 'Посты', s_reels: 'Reels', s_stories: 'Истории', s_comments: 'Комментарии', s_voice_comments: 'Голосовые комментарии', s_photo_comments: 'Фото-комментарии', s_likes: 'Лайки', s_chats: 'Чаты', s_messages: 'Сообщения', s_voice_msgs: 'Голосовые сообщения', s_photo_msgs: 'Фото-сообщения', s_reports: 'Открытые жалобы',
 ago_now: 'сейчас', ago_m: '{n} мин', ago_h: '{n} ч', ago_d: '{n} д'
@@ -286,7 +290,7 @@ search_ph: 'Ҷустуҷӯи одамон', suggested: 'Пешниҳод', no_us
 no_chats: 'Ҳоло чат нест', find_people: 'Одамонро ёбед', say_hi: 'Салом гӯед 👋', you: 'Шумо',
 report: 'Шикоят', reported: 'Ташаккур, мо месанҷем.', r_nudity: 'Бараҳнагӣ ё 18+', r_violence: 'Силоҳ ё зӯроварӣ', r_spam: 'Спам ё қаллобӣ', r_other: 'Дигар', block_user: 'Бастан', unblock: 'Кушодан', blocked: 'Корбар баста шуд', unblocked: 'Корбар кушода шуд', block_q: '@{u}-ро бандем? Вай профили шуморо намебинад ва навишта наметавонад.', del_q: 'Ин постро нест кунем?',
 mod_blocked: 'Ин мундариҷа манъ аст.', mod_warn: 'Огоҳии {n} аз {max}. Дар {max} ҳисоб банд мешавад.', banned_t: 'Ҳисоб банд шуд', banned_d: 'Ҳисоби шумо барои вайрон кардани Қоидаҳои ҷамъият банд шуд.',
-since_y: 'Аз соли {y}', accent: 'Рангги асосӣ', chat_search: 'Ҷустуҷӯ дар чатҳо', settings: 'Танзимот', language: 'Забон', theme: 'Мавзӯъ', th_auto: 'Худкор', th_dark: 'Торик', th_light: 'Равшан', verified: 'Нишони тасдиқ', v_on: 'То {d} амал мекунад', v_off: 'Шумо нишон надоред.', v_note: '10 корбари аввал онро 1 моҳ ройгон мегиранд. Тасдиқи пулӣ тавассути Google Play пайдо мешавад.', logout: 'Баромадан', delete_acc: 'Нест кардани ҳисоб', delete_acc_q: 'Ҳисобро ба таври доимӣ нест кунем? Постҳо, паёмҳо ва файлҳо нест мешаванд.', acc_deleted: 'Ҳисоб нест шуд',
+music: 'Мусиқӣ', music_pick: 'Мусиқӣ аз телефон илова кунед', music_big: 'Файли аудио хеле калон аст (то 12 МБ).', only_aud: 'Файли аудио интихоб кунед.', music_note: 'Танҳо мусиқиро истифода баред, ки ҳуқуқи он дорад. Соҳибони ҳуқуқ метавонанд шикоят кунанд ва ин мундариҷа нест карда мешавад.', since_y: 'Аз соли {y}', accent: 'Рангги асосӣ', chat_search: 'Ҷустуҷӯ дар чатҳо', settings: 'Танзимот', language: 'Забон', theme: 'Мавзӯъ', th_auto: 'Худкор', th_dark: 'Торик', th_light: 'Равшан', verified: 'Нишони тасдиқ', v_on: 'То {d} амал мекунад', v_off: 'Шумо нишон надоред.', v_note: '10 корбари аввал онро 1 моҳ ройгон мегиранд. Тасдиқи пулӣ тавассути Google Play пайдо мешавад.', logout: 'Баромадан', delete_acc: 'Нест кардани ҳисоб', delete_acc_q: 'Ҳисобро ба таври доимӣ нест кунем? Постҳо, паёмҳо ва файлҳо нест мешаванд.', acc_deleted: 'Ҳисоб нест шуд',
 admin: 'Админ', ad_stats: 'Омор', ad_users: 'Корбарон', ad_reports: 'Шикоятҳо', ad_note: 'Рақамҳо аз пойгоҳи сервер гирифта мешаванд.', ban: 'Бан', unban: 'Раҳо', verify: 'Нишон 30 рӯз', unverify: 'Нишонро гирифтан', is_banned: 'бан', dismiss: 'Рад кардан', no_reports: 'Шикоят нест', by: 'аз', hidden: 'пинҳон',
 s_users: 'Корбарон', s_online: 'Ҳоло онлайн', s_active24: 'Фаъол дар 24 соат', s_banned: 'Бан шудагон', s_posts: 'Постҳо', s_reels: 'Reels', s_stories: 'Ҳикояҳо', s_comments: 'Шарҳҳо', s_voice_comments: 'Шарҳҳои овозӣ', s_photo_comments: 'Шарҳҳои аксӣ', s_likes: 'Лайкҳо', s_chats: 'Чатҳо', s_messages: 'Паёмҳо', s_voice_msgs: 'Паёмҳои овозӣ', s_photo_msgs: 'Паёмҳои аксӣ', s_reports: 'Шикоятҳои кушода',
 ago_now: 'ҳоло', ago_m: '{n} дақ', ago_h: '{n} соат', ago_d: '{n} рӯз'
@@ -675,7 +679,7 @@ function topFor(tab) {
   }
 }
 function go(tab) {
-  const prev = S.tab; S.tab = tab;
+  const prev = S.tab; S.tab = tab; stopAudio();
   ['home', 'reels', 'chats', 'search', 'me'].forEach(n => { $('#v-' + n).hidden = n !== tab; });
   document.querySelectorAll('#nav [data-tab]').forEach(b => b.setAttribute('aria-current', b.getAttribute('data-tab') === tab ? 'true' : 'false'));
   $('#app').classList.toggle('rl', tab === 'reels');
@@ -745,6 +749,7 @@ function postCard(p, opts) {
   card.append(
     h('div', { class: 'post-h' }, h('div', { onclick: () => openProfile(p.username), style: 'cursor:pointer' }, av(p)), who, h('button', { class: 'ib', style: 'width:36px;height:36px;border-radius:12px', 'aria-label': t('more'), html: ic('more', 20), onclick: () => postMenu(p, card) })),
     h('div', { class: 'pic' }, img),
+    p.audio_url ? h('div', { style: 'padding:8px 14px 0' }, musicChip(p)) : null,
     h('div', { class: 'acts' }, likeBtn, h('button', { 'aria-label': t('comments'), onclick: () => openComments(p, n => { p.comment_count = n; cmCnt.textContent = fmtN(n); }) }, icon('msg', 26), cmCnt)),
     p.caption ? h('div', { class: 'cap' }, h('b', null, p.username), p.caption) : null);
   return card;
@@ -776,6 +781,7 @@ function openStories(groups, gi) {
   sv.addEventListener('click', e => { if (e.target.closest('.x')) return; const r = sv.getBoundingClientRect(); if (e.clientX - r.left < r.width / 3) prev(); else next(); });
   function paint() {
     const it = g.items[idx]; imgEl.src = it.media_url; cap.textContent = it.caption || '';
+    stopAudio(); if (it.audio_url) { const a = new Audio(it.audio_url); a.loop = true; AU.el = a; const pr = a.play(); if (pr && pr.catch) pr.catch(() => {}); cap.append(h('div', { class: 'mu', style: 'margin-top:6px' }, '♪ ' + (it.audio_name || t('music')))); }
     bars.textContent = ''; g.items.forEach((_, i) => bars.append(h('i', null, h('b', { style: i < idx ? 'width:100%' : '' }))));
     who.textContent = ''; who.append(av(g.user, 'sm'), h('b', null, g.user.username), h('span', { style: 'opacity:.7' }, ago(it.created_at)));
     clearInterval(timer); start = Date.now();
@@ -784,7 +790,7 @@ function openStories(groups, gi) {
   }
   function next() { if (idx < g.items.length - 1) { idx++; paint(); } else if (gi < groups.length - 1) { gi++; g = groups[gi]; idx = 0; paint(); } else closeOv(sv); }
   function prev() { if (idx > 0) { idx--; paint(); } else if (gi > 0) { gi--; g = groups[gi]; idx = 0; paint(); } }
-  openOv(sv, () => clearInterval(timer)); paint();
+  openOv(sv, () => { clearInterval(timer); stopAudio(); }); paint();
 }
 
 /* ===== create ===== */
@@ -799,7 +805,7 @@ function videoInfo(file) {
   });
 }
 function openCreate(kind) {
-  let file = null, busy = false, previewUrl = null;
+  let file = null, busy = false, previewUrl = null, music = null;
   const ov = h('div', { class: 'ov' }), body = h('div', { class: 'body pad' });
   const chips = h('div', { class: 'tabs', style: 'padding:0 0 12px' });
   const pv = h('div'); const cap = h('textarea', { maxlength: 2200, placeholder: t('caption') });
@@ -829,7 +835,9 @@ function openCreate(kind) {
         const ext = (/\.(mp4|webm|mov|m4v)$/i.exec(file.name || '') || ['', 'mp4'])[1].toLowerCase().replace(/^\./, '');
         url = await putFile(newPath('.' + (/^(mp4|webm|mov|m4v)$/.test(ext) ? ext : 'mp4')), file, file.type || 'video/mp4'); type = 'video';
       } else url = await uploadImage(file, 1080);
-      const res = await rpc('create_post', { p_kind: kind, p_media_url: url, p_media_type: type, p_caption: cap.value.trim() });
+      let aurl = null, aname = null;
+      if (music) { aurl = await putFile(newPath('.' + music.ext), music.file, music.file.type || 'audio/mpeg'); aname = music.name; }
+      const res = await rpc('create_post', { p_kind: kind, p_media_url: url, p_media_type: type, p_caption: cap.value.trim(), p_audio_url: aurl, p_audio_name: aname });
       if (handleResult(res, t('published'))) {
         closeOv(ov); FEED.items = [];
         if (kind === 'story') loadStories();
@@ -839,6 +847,21 @@ function openCreate(kind) {
       } else { busy = false; share.disabled = false; share.textContent = t('share'); }
     } catch (e) { busy = false; share.disabled = false; share.textContent = t('share'); toast(errText(e)); }
   } }, t('share'));
+  const musicBox = h('div', { style: 'margin-bottom:12px' });
+  function musicPaint() {
+    musicBox.textContent = '';
+    if (music) musicBox.append(h('div', { class: 'music', style: 'display:flex;align-items:center;gap:8px;width:100%' }, h('span', { style: 'flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap' }, '♪ ' + music.name), h('button', { 'aria-label': t('delete'), html: ic('x', 18), onclick: () => { music = null; musicPaint(); } })));
+    else musicBox.append(h('button', { class: 'btn', onclick: async () => {
+      const f = await pickFile('audio/*,.mp3,.m4a,.aac,.ogg,.wav,.opus'); if (!f) return;
+      const nm = String(f.name || '').replace(/\.[a-z0-9]{2,5}$/i, '').trim().slice(0, 70);
+      if (modBad(nm.replace(/[._\-]+/g, ' '))) { clientViolation('filename'); return; }
+      const ext = (/\.([a-z0-9]{2,5})$/i.exec(f.name || '') || ['', ''])[1].toLowerCase();
+      if (!(f.type && f.type.indexOf('audio') === 0) && !/^(mp3|m4a|aac|ogg|wav|opus|weba)$/.test(ext)) { toast(t('only_aud')); return; }
+      if (f.size > 12 * 1024 * 1024) { toast(t('music_big')); return; }
+      music = { file: f, name: nm || t('music'), ext: /^(mp3|m4a|aac|ogg|wav|opus|weba)$/.test(ext) ? ext : 'mp3' }; musicPaint();
+    } }, icon('mic', 22), t('music_pick')));
+  }
+  musicPaint();
   function pickPaint() { pick.textContent = ''; pick.append(icon(kind === 'reel' ? 'reel' : 'img', 22), kind === 'reel' ? t('pick_video') : t('pick_photo')); }
   function chipsPaint() {
     chips.textContent = '';
@@ -850,7 +873,7 @@ function openCreate(kind) {
     } }, x[1])));
   }
   chipsPaint(); pickPaint();
-  body.append(chips, pv, h('div', { style: 'margin-bottom:12px' }, pick), h('div', { class: 'field' }, cap), share, h('p', { class: 'hint' }, t('create_hint')));
+  body.append(chips, pv, h('div', { style: 'margin-bottom:12px' }, pick), musicBox, h('div', { class: 'field' }, cap), share, h('p', { class: 'hint' }, t('create_hint')), h('p', { class: 'hint' }, t('music_note')));
   ov.append(topbar(t('new_post'), () => closeOv(ov)), body);
   openOv(ov, () => { if (previewUrl) URL.revokeObjectURL(previewUrl); });
 }
@@ -1104,17 +1127,29 @@ function openEdit(done) {
 
 /* ===== reels: vertical video feed ===== */
 const RL = { built: false, items: [], end: false, busy: false, muted: true, io: null, lazy: null, list: null, cur: null };
-function stopReels() { document.querySelectorAll('#v-reels video').forEach(v => { try { v.pause(); } catch (e) {} }); }
+const AU = { el: null, btn: null };
+function stopAudio() { if (AU.el) { try { AU.el.pause(); } catch (e) {} AU.el = null; } if (AU.btn) { AU.btn.setAttribute('aria-pressed', 'false'); AU.btn = null; } }
+function toggleTrack(url, btn) {
+  if (AU.btn === btn) { stopAudio(); return; }
+  stopAudio(); const a = new Audio(url); a.loop = true; AU.el = a; AU.btn = btn; btn.setAttribute('aria-pressed', 'true');
+  const pr = a.play(); if (pr && pr.catch) pr.catch(() => { stopAudio(); });
+}
+function musicChip(p) {
+  return h('button', { class: 'music', 'aria-pressed': 'false', onclick: e => { e.stopPropagation(); toggleTrack(p.audio_url, e.currentTarget); } }, h('span', { html: ic('play', 14, 'currentColor') }), h('span', null, '♪ ' + (p.audio_name || t('music'))));
+}
+function stopReels() { document.querySelectorAll('#v-reels video').forEach(v => { try { v.pause(); } catch (e) {} }); document.querySelectorAll('#v-reels .rl1').forEach(el => { if (el._au) try { el._au.pause(); } catch (e) {} }); }
 function reelPlay(el) {
   const v = el.querySelector('video'); if (!v) return;
   if (!v.getAttribute('src')) v.src = v.dataset.src;
-  v.muted = RL.muted; el.classList.remove('paused');
+  el.classList.remove('paused');
+  if (el._au) { v.muted = true; el._au.muted = RL.muted; el._au.currentTime = v.currentTime || 0; const q = el._au.play(); if (q && q.catch) q.catch(() => {}); } else v.muted = RL.muted;
   const pr = v.play(); if (pr && pr.catch) pr.catch(() => { el.classList.add('paused'); });
 }
 function reelEl(p) {
   const el = h('section', { class: 'rl1', 'data-id': p.id });
   const v = h('video', { loop: true, playsinline: true, preload: 'none', 'data-src': p.media_url });
   v.muted = true; v.setAttribute('playsinline', ''); v.setAttribute('webkit-playsinline', '');
+  if (p.audio_url) { const au = new Audio(); au.preload = 'none'; au.loop = true; au.src = p.audio_url; el._au = au; v.addEventListener('seeked', () => { if (v.currentTime < 0.4 && au.currentTime > 1) au.currentTime = 0; }); }
   const cnt = h('span', null, fmtN(p.like_count)), cmc = h('span', null, fmtN(p.comment_count));
   const lk = h('button', { 'aria-label': t('like'), 'aria-pressed': p.liked ? 'true' : 'false' }, icon('heart', 26), cnt);
   const paint = () => { lk.setAttribute('aria-pressed', p.liked ? 'true' : 'false'); cnt.textContent = fmtN(p.like_count); };
@@ -1127,7 +1162,7 @@ function reelEl(p) {
   const cm = h('button', { 'aria-label': t('comments'), onclick: e => { e.stopPropagation(); openComments(p, n => { p.comment_count = n; cmc.textContent = fmtN(n); }); } }, icon('msg', 26), cmc);
   const snd = h('button', { 'aria-label': 'sound', html: ic(RL.muted ? 'volx' : 'vol', 24), onclick: e => {
     e.stopPropagation(); RL.muted = !RL.muted;
-    document.querySelectorAll('#v-reels video').forEach(x => { x.muted = RL.muted; });
+    document.querySelectorAll('#v-reels .rl1').forEach(r => { const x = r.querySelector('video'); if (r._au) { x.muted = true; r._au.muted = RL.muted; } else x.muted = RL.muted; });
     document.querySelectorAll('#v-reels .snd').forEach(b => { b.innerHTML = ic(RL.muted ? 'volx' : 'vol', 24); });
   } });
   snd.classList.add('snd');
@@ -1142,13 +1177,14 @@ function reelEl(p) {
     h('div', { class: 'side' }, lk, cm, snd, mo),
     h('div', { class: 'meta' },
       h('div', { class: 'u' }, h('div', { onclick: e => { e.stopPropagation(); openProfile(p.username); } }, av(p, 'sm')), h('b', { onclick: e => { e.stopPropagation(); openProfile(p.username); } }, p.username, badge(p)), fb),
+      p.audio_url ? h('div', { class: 'mu' }, '♪ ' + (p.audio_name || t('music'))) : null,
       p.caption ? h('p', null, p.caption) : null));
   let tap = 0, tm = 0;
   el.addEventListener('click', () => {
     const n = Date.now();
     if (n - tap < 300) { clearTimeout(tm); if (!p.liked) toggle(); tap = 0; return; }
     tap = n; tm = setTimeout(() => {
-      if (v.paused) { const pr = v.play(); if (pr && pr.catch) pr.catch(() => {}); el.classList.remove('paused'); } else { v.pause(); el.classList.add('paused'); }
+      if (v.paused) { const pr = v.play(); if (pr && pr.catch) pr.catch(() => {}); if (el._au) { const q = el._au.play(); if (q && q.catch) q.catch(() => {}); } el.classList.remove('paused'); } else { v.pause(); if (el._au) el._au.pause(); el.classList.add('paused'); }
     }, 300);
   });
   return el;
@@ -1186,7 +1222,7 @@ function buildReels(force) {
         RL.cur = el; reelPlay(el);
         const i = RL.items.findIndex(x => x.id === el.getAttribute('data-id'));
         if (i >= RL.items.length - 3) moreReels();
-      } else if (v && !v.paused) { v.pause(); }
+      } else { if (v && !v.paused) v.pause(); if (el._au) el._au.pause(); }
     });
   }, { root: list, threshold: [0, 0.6, 1] });
   RL.lazy = new IntersectionObserver(es => {
