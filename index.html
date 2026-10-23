@@ -308,6 +308,10 @@ body{background:var(--bgg);min-height:100vh}
 .nb.add{font-size:16px;line-height:1}
 .rl1 .vw{font-size:12px;opacity:.85;margin-top:4px}
 .chatsearch{width:calc(100% - 28px);margin:8px 14px;box-sizing:border-box}
+.row[aria-pressed=true]{background:color-mix(in srgb,var(--accent) 25%,transparent)}
+.row .tick{margin-inline-start:auto;opacity:0}
+.row[aria-pressed=true] .tick{opacity:1;color:var(--accent)}
+.bub .sn{display:block;font-size:12px;opacity:.8;margin-bottom:2px}
 </style></head><body><div id="root"></div><div id="ovs"></div><div id="toast" class="toast" hidden></div>
 <script>const L = {
 en: {
@@ -323,7 +327,7 @@ search_ph: 'Search people', suggested: 'Suggested', no_users: 'No people found',
 no_chats: 'No chats yet', find_people: 'Find people', say_hi: 'Say hi 👋', you: 'You',
 report: 'Report', reported: 'Thanks, we will review it.', r_nudity: 'Nudity or 18+', r_violence: 'Weapons or violence', r_spam: 'Spam or scam', r_other: 'Other', block_user: 'Block user', unblock: 'Unblock', blocked: 'User blocked', unblocked: 'User unblocked', block_q: 'Block @{u}? They will not see your profile or be able to message you.', del_q: 'Delete this post?',
 mod_blocked: 'This content is not allowed.', mod_warn: 'Warning {n} of {max}. Your account will be banned at {max}.', banned_t: 'Account banned', banned_d: 'Your account was banned for breaking the Community Rules.',
-save: 'Save', saved_t: 'Saved', saved_empty: 'Nothing saved yet', unsaved: 'Removed from saved', saved_ok: 'Saved', send_to: 'Send to', copy_link: 'Copy link', link_copied: 'Link copied', share_more: 'Share…', sent: 'Sent', no_people: 'No people yet. Follow someone first.', notifs: 'Notifications', n_like: 'liked your post', n_comment: 'commented:', n_follow: 'started following you', n_empty: 'No notifications yet', explore: 'Popular videos', tags: 'Trending', tag_none: 'Nothing found', views: 'views', likes_n: '{n} likes', note: 'Note', note_ph: 'Share a thought…', note_you: 'Your note', note_del: 'Delete note', note_hint: 'Visible for 24 hours to people you follow and who follow you.', note_add: 'Add note', f_all: 'All', f_unread: 'Unread', online: 'online', author: 'Author', show_replies: 'View replies ({n})', hide_replies: 'Hide replies', view_all_c: 'View all comments ({n})', post_gone: 'This post is not available.', create_sec: 'Create', look_sec: 'Appearance', acct_sec: 'Account', custom_color: 'Custom color', shared_post: 'Shared a post', new_msg: 'New message', search_chats: 'Search chats', del_c_q: 'Delete this comment?', bg: 'Background', bg_def: 'Default', bg_ocean: 'Ocean', bg_sunset: 'Sunset', bg_forest: 'Forest', bg_mono: 'Mono', music: 'Music', music_pick: 'Add music from your phone', music_big: 'Audio file is too large (max 12 MB).', only_aud: 'Please choose an audio file.', music_note: 'Use only music you have the right to use. Rights holders can report content and it will be removed.', since_y: 'Since {y}', accent: 'Accent color', chat_search: 'Search chats', settings: 'Settings', language: 'Language', theme: 'Theme', th_auto: 'Auto', th_dark: 'Dark', th_light: 'Light', verified: 'Verified badge', v_on: 'Active until {d}', v_off: 'You do not have the badge.', v_note: 'The first 10 users get it free for 1 month. Paid verification will be available through Google Play.', logout: 'Log out', delete_acc: 'Delete account', delete_acc_q: 'Delete your account forever? Posts, messages and files will be removed.', acc_deleted: 'Account deleted',
+private_acc: 'Private account', private_hint: 'Only approved followers can see your posts.', requested: 'Requested', req_title: 'Follow requests', req_empty: 'No requests', accept: 'Accept', decline: 'Decline', private_lock: 'This account is private', private_lock2: 'Follow to see photos and videos.', new_group: 'New group', group_name: 'Group name', group_pick: 'Choose members', group_made: 'Group created', members: 'Members', leave_group: 'Leave group', leave_q: 'Leave this group?', group_t: 'Group', req_n: 'Follow requests', pick_one: 'Choose at least one person', save: 'Save', saved_t: 'Saved', saved_empty: 'Nothing saved yet', unsaved: 'Removed from saved', saved_ok: 'Saved', send_to: 'Send to', copy_link: 'Copy link', link_copied: 'Link copied', share_more: 'Share…', sent: 'Sent', no_people: 'No people yet. Follow someone first.', notifs: 'Notifications', n_like: 'liked your post', n_comment: 'commented:', n_follow: 'started following you', n_empty: 'No notifications yet', explore: 'Popular videos', tags: 'Trending', tag_none: 'Nothing found', views: 'views', likes_n: '{n} likes', note: 'Note', note_ph: 'Share a thought…', note_you: 'Your note', note_del: 'Delete note', note_hint: 'Visible for 24 hours to people you follow and who follow you.', note_add: 'Add note', f_all: 'All', f_unread: 'Unread', online: 'online', author: 'Author', show_replies: 'View replies ({n})', hide_replies: 'Hide replies', view_all_c: 'View all comments ({n})', post_gone: 'This post is not available.', create_sec: 'Create', look_sec: 'Appearance', acct_sec: 'Account', custom_color: 'Custom color', shared_post: 'Shared a post', new_msg: 'New message', search_chats: 'Search chats', del_c_q: 'Delete this comment?', bg: 'Background', bg_def: 'Default', bg_ocean: 'Ocean', bg_sunset: 'Sunset', bg_forest: 'Forest', bg_mono: 'Mono', music: 'Music', music_pick: 'Add music from your phone', music_big: 'Audio file is too large (max 12 MB).', only_aud: 'Please choose an audio file.', music_note: 'Use only music you have the right to use. Rights holders can report content and it will be removed.', since_y: 'Since {y}', accent: 'Accent color', chat_search: 'Search chats', settings: 'Settings', language: 'Language', theme: 'Theme', th_auto: 'Auto', th_dark: 'Dark', th_light: 'Light', verified: 'Verified badge', v_on: 'Active until {d}', v_off: 'You do not have the badge.', v_note: 'The first 10 users get it free for 1 month. Paid verification will be available through Google Play.', logout: 'Log out', delete_acc: 'Delete account', delete_acc_q: 'Delete your account forever? Posts, messages and files will be removed.', acc_deleted: 'Account deleted',
 admin: 'Admin', ad_stats: 'Stats', ad_users: 'Users', ad_reports: 'Reports', ad_note: 'Numbers come from the server database.', ban: 'Ban', unban: 'Unban', verify: 'Verify 30d', unverify: 'Remove badge', is_banned: 'banned', dismiss: 'Dismiss', no_reports: 'No reports', by: 'by', hidden: 'hidden',
 s_users: 'Users', s_online: 'Online now', s_active24: 'Active 24h', s_banned: 'Banned', s_posts: 'Posts', s_reels: 'Reels', s_stories: 'Stories', s_comments: 'Comments', s_voice_comments: 'Voice comments', s_photo_comments: 'Photo comments', s_likes: 'Likes', s_chats: 'Chats', s_messages: 'Messages', s_voice_msgs: 'Voice messages', s_photo_msgs: 'Photo messages', s_reports: 'Open reports',
 ago_now: 'now', ago_m: '{n}m', ago_h: '{n}h', ago_d: '{n}d'
@@ -341,7 +345,7 @@ search_ph: 'Поиск людей', suggested: 'Рекомендуем', no_user
 no_chats: 'Чатов пока нет', find_people: 'Найти людей', say_hi: 'Скажите привет 👋', you: 'Вы',
 report: 'Пожаловаться', reported: 'Спасибо, мы проверим.', r_nudity: 'Обнажёнка или 18+', r_violence: 'Оружие или насилие', r_spam: 'Спам или мошенничество', r_other: 'Другое', block_user: 'Заблокировать', unblock: 'Разблокировать', blocked: 'Пользователь заблокирован', unblocked: 'Пользователь разблокирован', block_q: 'Заблокировать @{u}? Он не увидит ваш профиль и не сможет вам писать.', del_q: 'Удалить эту публикацию?',
 mod_blocked: 'Такой контент запрещён.', mod_warn: 'Предупреждение {n} из {max}. При {max} аккаунт блокируется.', banned_t: 'Аккаунт заблокирован', banned_d: 'Ваш аккаунт заблокирован за нарушение Правил сообщества.',
-save: 'Сохранить', saved_t: 'Сохранённое', saved_empty: 'Пока ничего не сохранено', unsaved: 'Убрано из сохранённого', saved_ok: 'Сохранено', send_to: 'Отправить', copy_link: 'Копировать ссылку', link_copied: 'Ссылка скопирована', share_more: 'Поделиться…', sent: 'Отправлено', no_people: 'Пока нет людей. Сначала подпишитесь на кого-нибудь.', notifs: 'Уведомления', n_like: 'оценил(а) вашу публикацию', n_comment: 'комментарий:', n_follow: 'подписался(ась) на вас', n_empty: 'Пока нет уведомлений', explore: 'Популярные видео', tags: 'В тренде', tag_none: 'Ничего не найдено', views: 'просмотров', likes_n: '{n} нравится', note: 'Заметка', note_ph: 'Поделитесь мыслью…', note_you: 'Ваша заметка', note_del: 'Удалить заметку', note_hint: 'Видна 24 часа тем, на кого вы подписаны и кто подписан на вас.', note_add: 'Добавить заметку', f_all: 'Все', f_unread: 'Непрочитанные', online: 'в сети', author: 'Автор', show_replies: 'Показать ответы ({n})', hide_replies: 'Скрыть ответы', view_all_c: 'Смотреть все комментарии ({n})', post_gone: 'Эта публикация недоступна.', create_sec: 'Создать', look_sec: 'Оформление', acct_sec: 'Аккаунт', custom_color: 'Свой цвет', shared_post: 'Поделился публикацией', new_msg: 'Новое сообщение', search_chats: 'Поиск по чатам', del_c_q: 'Удалить комментарий?', bg: 'Фон', bg_def: 'Стандартный', bg_ocean: 'Океан', bg_sunset: 'Закат', bg_forest: 'Лес', bg_mono: 'Моно', music: 'Музыка', music_pick: 'Добавить музыку с телефона', music_big: 'Аудиофайл слишком большой (макс. 12 МБ).', only_aud: 'Выберите аудиофайл.', music_note: 'Используйте только музыку, на которую у вас есть права. Правообладатели могут пожаловаться, и контент будет удалён.', since_y: 'С {y} года', accent: 'Цвет акцента', chat_search: 'Поиск в чатах', settings: 'Настройки', language: 'Язык', theme: 'Тема', th_auto: 'Авто', th_dark: 'Тёмная', th_light: 'Светлая', verified: 'Галочка верификации', v_on: 'Действует до {d}', v_off: 'У вас нет галочки.', v_note: 'Первые 10 пользователей получают её бесплатно на 1 месяц. Платная верификация появится через Google Play.', logout: 'Выйти', delete_acc: 'Удалить аккаунт', delete_acc_q: 'Удалить аккаунт навсегда? Посты, сообщения и файлы будут удалены.', acc_deleted: 'Аккаунт удалён',
+private_acc: 'Закрытый аккаунт', private_hint: 'Ваши публикации видят только подтверждённые подписчики.', requested: 'Запрос отправлен', req_title: 'Запросы на подписку', req_empty: 'Запросов нет', accept: 'Принять', decline: 'Отклонить', private_lock: 'Это закрытый аккаунт', private_lock2: 'Подпишитесь, чтобы видеть фото и видео.', new_group: 'Новая группа', group_name: 'Название группы', group_pick: 'Выберите участников', group_made: 'Группа создана', members: 'Участники', leave_group: 'Выйти из группы', leave_q: 'Выйти из этой группы?', group_t: 'Группа', req_n: 'Запросы на подписку', pick_one: 'Выберите хотя бы одного', save: 'Сохранить', saved_t: 'Сохранённое', saved_empty: 'Пока ничего не сохранено', unsaved: 'Убрано из сохранённого', saved_ok: 'Сохранено', send_to: 'Отправить', copy_link: 'Копировать ссылку', link_copied: 'Ссылка скопирована', share_more: 'Поделиться…', sent: 'Отправлено', no_people: 'Пока нет людей. Сначала подпишитесь на кого-нибудь.', notifs: 'Уведомления', n_like: 'оценил(а) вашу публикацию', n_comment: 'комментарий:', n_follow: 'подписался(ась) на вас', n_empty: 'Пока нет уведомлений', explore: 'Популярные видео', tags: 'В тренде', tag_none: 'Ничего не найдено', views: 'просмотров', likes_n: '{n} нравится', note: 'Заметка', note_ph: 'Поделитесь мыслью…', note_you: 'Ваша заметка', note_del: 'Удалить заметку', note_hint: 'Видна 24 часа тем, на кого вы подписаны и кто подписан на вас.', note_add: 'Добавить заметку', f_all: 'Все', f_unread: 'Непрочитанные', online: 'в сети', author: 'Автор', show_replies: 'Показать ответы ({n})', hide_replies: 'Скрыть ответы', view_all_c: 'Смотреть все комментарии ({n})', post_gone: 'Эта публикация недоступна.', create_sec: 'Создать', look_sec: 'Оформление', acct_sec: 'Аккаунт', custom_color: 'Свой цвет', shared_post: 'Поделился публикацией', new_msg: 'Новое сообщение', search_chats: 'Поиск по чатам', del_c_q: 'Удалить комментарий?', bg: 'Фон', bg_def: 'Стандартный', bg_ocean: 'Океан', bg_sunset: 'Закат', bg_forest: 'Лес', bg_mono: 'Моно', music: 'Музыка', music_pick: 'Добавить музыку с телефона', music_big: 'Аудиофайл слишком большой (макс. 12 МБ).', only_aud: 'Выберите аудиофайл.', music_note: 'Используйте только музыку, на которую у вас есть права. Правообладатели могут пожаловаться, и контент будет удалён.', since_y: 'С {y} года', accent: 'Цвет акцента', chat_search: 'Поиск в чатах', settings: 'Настройки', language: 'Язык', theme: 'Тема', th_auto: 'Авто', th_dark: 'Тёмная', th_light: 'Светлая', verified: 'Галочка верификации', v_on: 'Действует до {d}', v_off: 'У вас нет галочки.', v_note: 'Первые 10 пользователей получают её бесплатно на 1 месяц. Платная верификация появится через Google Play.', logout: 'Выйти', delete_acc: 'Удалить аккаунт', delete_acc_q: 'Удалить аккаунт навсегда? Посты, сообщения и файлы будут удалены.', acc_deleted: 'Аккаунт удалён',
 admin: 'Админ', ad_stats: 'Статистика', ad_users: 'Пользователи', ad_reports: 'Жалобы', ad_note: 'Цифры берутся из серверной базы.', ban: 'Бан', unban: 'Разбан', verify: 'Галочка 30 дн.', unverify: 'Убрать галочку', is_banned: 'в бане', dismiss: 'Отклонить', no_reports: 'Жалоб нет', by: 'от', hidden: 'скрыто',
 s_users: 'Пользователи', s_online: 'Онлайн сейчас', s_active24: 'Активны за 24 ч', s_banned: 'В бане', s_posts: 'Посты', s_reels: 'Reels', s_stories: 'Истории', s_comments: 'Комментарии', s_voice_comments: 'Голосовые комментарии', s_photo_comments: 'Фото-комментарии', s_likes: 'Лайки', s_chats: 'Чаты', s_messages: 'Сообщения', s_voice_msgs: 'Голосовые сообщения', s_photo_msgs: 'Фото-сообщения', s_reports: 'Открытые жалобы',
 ago_now: 'сейчас', ago_m: '{n} мин', ago_h: '{n} ч', ago_d: '{n} д'
@@ -359,7 +363,7 @@ search_ph: 'Ҷустуҷӯи одамон', suggested: 'Пешниҳод', no_us
 no_chats: 'Ҳоло чат нест', find_people: 'Одамонро ёбед', say_hi: 'Салом гӯед 👋', you: 'Шумо',
 report: 'Шикоят', reported: 'Ташаккур, мо месанҷем.', r_nudity: 'Бараҳнагӣ ё 18+', r_violence: 'Силоҳ ё зӯроварӣ', r_spam: 'Спам ё қаллобӣ', r_other: 'Дигар', block_user: 'Бастан', unblock: 'Кушодан', blocked: 'Корбар баста шуд', unblocked: 'Корбар кушода шуд', block_q: '@{u}-ро бандем? Вай профили шуморо намебинад ва навишта наметавонад.', del_q: 'Ин постро нест кунем?',
 mod_blocked: 'Ин мундариҷа манъ аст.', mod_warn: 'Огоҳии {n} аз {max}. Дар {max} ҳисоб банд мешавад.', banned_t: 'Ҳисоб банд шуд', banned_d: 'Ҳисоби шумо барои вайрон кардани Қоидаҳои ҷамъият банд шуд.',
-save: 'Захира', saved_t: 'Захирашуда', saved_empty: 'Ҳоло чизе захира нашудааст', unsaved: 'Аз захира гирифта шуд', saved_ok: 'Захира шуд', send_to: 'Фиристодан ба', copy_link: 'Нусхаи истинод', link_copied: 'Истинод нусха шуд', share_more: 'Мубодила…', sent: 'Фиристода шуд', no_people: 'Ҳоло одам нест. Аввал ба касе обуна шавед.', notifs: 'Огоҳиҳо', n_like: 'постатонро писандид', n_comment: 'шарҳ дод:', n_follow: 'ба шумо обуна шуд', n_empty: 'Ҳоло огоҳӣ нест', explore: 'Видеоҳои маъруф', tags: 'Тренд', tag_none: 'Чизе ёфт нашуд', views: 'тамошо', likes_n: '{n} писанд', note: 'Ёддошт', note_ph: 'Фикратонро нависед…', note_you: 'Ёддошти шумо', note_del: 'Ёддоштро нест кунед', note_hint: '24 соат ба касоне, ки шумо обуна ҳастед ва ба шумо обуна ҳастанд, намоён аст.', note_add: 'Ёддошт илова кунед', f_all: 'Ҳама', f_unread: 'Нахондашуда', online: 'онлайн', author: 'Муаллиф', show_replies: 'Ҷавобҳоро нишон диҳед ({n})', hide_replies: 'Ҷавобҳоро пинҳон кунед', view_all_c: 'Дидани ҳамаи шарҳҳо ({n})', post_gone: 'Ин пост дастнорас аст.', create_sec: 'Эҷод', look_sec: 'Намуд', acct_sec: 'Ҳисоб', custom_color: 'Ранги дилхоҳ', shared_post: 'Постро мубодила кард', new_msg: 'Паёми нав', search_chats: 'Ҷустуҷӯ дар чатҳо', del_c_q: 'Шарҳ нест карда шавад?', bg: 'Замина', bg_def: 'Оддӣ', bg_ocean: 'Уқёнус', bg_sunset: 'Ғуруб', bg_forest: 'Ҷангал', bg_mono: 'Хокистарӣ', music: 'Мусиқӣ', music_pick: 'Мусиқӣ аз телефон илова кунед', music_big: 'Файли аудио хеле калон аст (то 12 МБ).', only_aud: 'Файли аудио интихоб кунед.', music_note: 'Танҳо мусиқиро истифода баред, ки ҳуқуқи он дорад. Соҳибони ҳуқуқ метавонанд шикоят кунанд ва ин мундариҷа нест карда мешавад.', since_y: 'Аз соли {y}', accent: 'Рангги асосӣ', chat_search: 'Ҷустуҷӯ дар чатҳо', settings: 'Танзимот', language: 'Забон', theme: 'Мавзӯъ', th_auto: 'Худкор', th_dark: 'Торик', th_light: 'Равшан', verified: 'Нишони тасдиқ', v_on: 'То {d} амал мекунад', v_off: 'Шумо нишон надоред.', v_note: '10 корбари аввал онро 1 моҳ ройгон мегиранд. Тасдиқи пулӣ тавассути Google Play пайдо мешавад.', logout: 'Баромадан', delete_acc: 'Нест кардани ҳисоб', delete_acc_q: 'Ҳисобро ба таври доимӣ нест кунем? Постҳо, паёмҳо ва файлҳо нест мешаванд.', acc_deleted: 'Ҳисоб нест шуд',
+private_acc: 'Аккаунти пинҳонӣ', private_hint: 'Танҳо обуначиёни тасдиқшуда постҳои шуморо мебинанд.', requested: 'Дархост фиристода шуд', req_title: 'Дархостҳои обуна', req_empty: 'Дархост нест', accept: 'Қабул', decline: 'Рад', private_lock: 'Ин аккаунти пинҳонӣ аст', private_lock2: 'Барои дидани акс ва видео обуна шавед.', new_group: 'Гурӯҳи нав', group_name: 'Номи гурӯҳ', group_pick: 'Иштирокчиёнро интихоб кунед', group_made: 'Гурӯҳ сохта шуд', members: 'Иштирокчиён', leave_group: 'Аз гурӯҳ баромадан', leave_q: 'Аз ин гурӯҳ мебароед?', group_t: 'Гурӯҳ', req_n: 'Дархостҳои обуна', pick_one: 'Камаш як нафарро интихоб кунед', save: 'Захира', saved_t: 'Захирашуда', saved_empty: 'Ҳоло чизе захира нашудааст', unsaved: 'Аз захира гирифта шуд', saved_ok: 'Захира шуд', send_to: 'Фиристодан ба', copy_link: 'Нусхаи истинод', link_copied: 'Истинод нусха шуд', share_more: 'Мубодила…', sent: 'Фиристода шуд', no_people: 'Ҳоло одам нест. Аввал ба касе обуна шавед.', notifs: 'Огоҳиҳо', n_like: 'постатонро писандид', n_comment: 'шарҳ дод:', n_follow: 'ба шумо обуна шуд', n_empty: 'Ҳоло огоҳӣ нест', explore: 'Видеоҳои маъруф', tags: 'Тренд', tag_none: 'Чизе ёфт нашуд', views: 'тамошо', likes_n: '{n} писанд', note: 'Ёддошт', note_ph: 'Фикратонро нависед…', note_you: 'Ёддошти шумо', note_del: 'Ёддоштро нест кунед', note_hint: '24 соат ба касоне, ки шумо обуна ҳастед ва ба шумо обуна ҳастанд, намоён аст.', note_add: 'Ёддошт илова кунед', f_all: 'Ҳама', f_unread: 'Нахондашуда', online: 'онлайн', author: 'Муаллиф', show_replies: 'Ҷавобҳоро нишон диҳед ({n})', hide_replies: 'Ҷавобҳоро пинҳон кунед', view_all_c: 'Дидани ҳамаи шарҳҳо ({n})', post_gone: 'Ин пост дастнорас аст.', create_sec: 'Эҷод', look_sec: 'Намуд', acct_sec: 'Ҳисоб', custom_color: 'Ранги дилхоҳ', shared_post: 'Постро мубодила кард', new_msg: 'Паёми нав', search_chats: 'Ҷустуҷӯ дар чатҳо', del_c_q: 'Шарҳ нест карда шавад?', bg: 'Замина', bg_def: 'Оддӣ', bg_ocean: 'Уқёнус', bg_sunset: 'Ғуруб', bg_forest: 'Ҷангал', bg_mono: 'Хокистарӣ', music: 'Мусиқӣ', music_pick: 'Мусиқӣ аз телефон илова кунед', music_big: 'Файли аудио хеле калон аст (то 12 МБ).', only_aud: 'Файли аудио интихоб кунед.', music_note: 'Танҳо мусиқиро истифода баред, ки ҳуқуқи он дорад. Соҳибони ҳуқуқ метавонанд шикоят кунанд ва ин мундариҷа нест карда мешавад.', since_y: 'Аз соли {y}', accent: 'Рангги асосӣ', chat_search: 'Ҷустуҷӯ дар чатҳо', settings: 'Танзимот', language: 'Забон', theme: 'Мавзӯъ', th_auto: 'Худкор', th_dark: 'Торик', th_light: 'Равшан', verified: 'Нишони тасдиқ', v_on: 'То {d} амал мекунад', v_off: 'Шумо нишон надоред.', v_note: '10 корбари аввал онро 1 моҳ ройгон мегиранд. Тасдиқи пулӣ тавассути Google Play пайдо мешавад.', logout: 'Баромадан', delete_acc: 'Нест кардани ҳисоб', delete_acc_q: 'Ҳисобро ба таври доимӣ нест кунем? Постҳо, паёмҳо ва файлҳо нест мешаванд.', acc_deleted: 'Ҳисоб нест шуд',
 admin: 'Админ', ad_stats: 'Омор', ad_users: 'Корбарон', ad_reports: 'Шикоятҳо', ad_note: 'Рақамҳо аз пойгоҳи сервер гирифта мешаванд.', ban: 'Бан', unban: 'Раҳо', verify: 'Нишон 30 рӯз', unverify: 'Нишонро гирифтан', is_banned: 'бан', dismiss: 'Рад кардан', no_reports: 'Шикоят нест', by: 'аз', hidden: 'пинҳон',
 s_users: 'Корбарон', s_online: 'Ҳоло онлайн', s_active24: 'Фаъол дар 24 соат', s_banned: 'Бан шудагон', s_posts: 'Постҳо', s_reels: 'Reels', s_stories: 'Ҳикояҳо', s_comments: 'Шарҳҳо', s_voice_comments: 'Шарҳҳои овозӣ', s_photo_comments: 'Шарҳҳои аксӣ', s_likes: 'Лайкҳо', s_chats: 'Чатҳо', s_messages: 'Паёмҳо', s_voice_msgs: 'Паёмҳои овозӣ', s_photo_msgs: 'Паёмҳои аксӣ', s_reports: 'Шикоятҳои кушода',
 ago_now: 'ҳоло', ago_m: '{n} дақ', ago_h: '{n} соат', ago_d: '{n} рӯз'
@@ -419,6 +423,9 @@ const IC = {
   play: '<path d="M7 4l13 8-13 8z"/>',
   vol: '<path d="M4 9v6h4l5 4V5L8 9zM16.5 8.5a5 5 0 0 1 0 7"/>',
   volx: '<path d="M4 9v6h4l5 4V5L8 9zM17 9l4 6M21 9l-4 6"/>',
+  check: '<path d="M5 12.5l4.5 4.5L19 7.5"/>',
+  lock: '<rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/>',
+  users: '<circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c0-3.6 3-6 6.5-6s6.5 2.4 6.5 6M16 4.5a3.5 3.5 0 0 1 0 7M18 14c2.2.6 3.5 2.5 3.5 5"/>',
   bookmark: '<path d="M6 3h12v18l-6-4.2L6 21z"/>',
   link: '<path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1"/>',
   eye: '<path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/>',
@@ -1107,12 +1114,13 @@ async function loadChats() {
     const online = c => c.last_seen && Date.now() - new Date(c.last_seen).getTime() < 120000;
     const draw = () => {
       const f = q.value.trim().toLowerCase(); list.textContent = '';
-      const rs = rows.filter(c => (!f || (c.name || '').toLowerCase().indexOf(f) >= 0 || c.username.indexOf(f) >= 0) && (flt === 'all' || Number(c.unread)));
+      const rs = rows.filter(c => (!f || (c.name || '').toLowerCase().indexOf(f) >= 0 || (c.username || '').indexOf(f) >= 0) && (flt === 'all' || Number(c.unread)));
       if (!rows.length) { list.append(h('div', { class: 'empty' }, t('no_chats'), h('div', { style: 'margin-top:14px' }, h('button', { class: 'btn primary sm', onclick: () => go('search') }, t('find_people'))))); return; }
-      rs.forEach(c => { const a = av(c); if (online(c)) a.classList.add('on'); list.append(h('button', { class: 'row' + (Number(c.unread) ? ' unread' : ''), onclick: () => openThread(c) }, a, h('div', { class: 'who' }, h('b', null, c.name || c.username, badge(c)), h('small', null, online(c) ? t('online') : lastText(c))), h('div', { style: 'text-align:end;font-size:12px;color:var(--muted)' }, ago(c.last_at), Number(c.unread) ? h('div', { style: 'margin-top:4px;background:var(--accent);color:#fff;border-radius:10px;padding:1px 7px;display:inline-block' }, c.unread) : null))); });
+      rs.forEach(c => { const a = av(c); if (!c.is_group && online(c)) a.classList.add('on'); list.append(h('button', { class: 'row' + (Number(c.unread) ? ' unread' : ''), onclick: () => openThread(c) }, a, h('div', { class: 'who' }, h('b', null, c.name || c.username, c.is_group ? null : badge(c)), h('small', null, !c.is_group && online(c) ? t('online') : lastText(c))), h('div', { style: 'text-align:end;font-size:12px;color:var(--muted)' }, ago(c.last_at), Number(c.unread) ? h('div', { style: 'margin-top:4px;background:var(--accent);color:#fff;border-radius:10px;padding:1px 7px;display:inline-block' }, c.unread) : null))); });
     };
     const paintChips = () => { chips.textContent = ''; [['all', 'f_all'], ['unread', 'f_unread']].forEach(x => chips.append(h('button', { class: 'chip', 'aria-pressed': flt === x[0] ? 'true' : 'false', onclick: () => { flt = x[0]; paintChips(); draw(); } }, t(x[1])))); };
-    paintChips(); q.addEventListener('input', draw); box.append(nrow, q, chips, list); draw();
+    const ng = h('button', { class: 'btn', style: 'margin:6px 14px 0;width:calc(100% - 28px)', onclick: () => openNewGroup(loadChats) }, '+ ' + t('new_group'));
+    paintChips(); q.addEventListener('input', draw); box.append(nrow, q, chips, ng, list); draw();
   } catch (e) { box.textContent = ''; box.append(h('div', { class: 'empty' }, errText(e))); }
 }
 function paintDot() { const d = $('#nav-dot'); if (d) d.hidden = !S.unread; }
@@ -1130,7 +1138,7 @@ function openThread(c) {
     else if (m.kind === 'voice') inner = h('audio', { controls: true, preload: 'none', src: m.media_url });
     else if (POSTMARK.test(m.body || '')) inner = postBubble(POSTMARK.exec(m.body)[1]);
     else inner = document.createTextNode(m.body || '');
-    return h('div', { class: 'bub ' + (mine ? 'me' : 'th') }, inner, h('small', null, hhmm(m.created_at)));
+    return h('div', { class: 'bub ' + (mine ? 'me' : 'th') }, c.is_group && !mine ? h('b', { class: 'sn' }, m.name || m.username) : null, inner, h('small', null, hhmm(m.created_at)));
   }
   async function poll(first) {
     if (document.hidden && !first) return;
@@ -1163,7 +1171,7 @@ function openThread(c) {
     catch (e) { toast(t('mic_denied')); }
   });
   const head = h('div', { class: 'top' }, h('button', { class: 'ib', 'aria-label': t('back'), html: ic('back'), onclick: () => closeOv(ov) }),
-    h('button', { class: 'row', style: 'padding:0;flex:1;min-width:0', onclick: () => openProfile(c.username) }, av(c, 'sm'), h('div', { class: 'who' }, h('b', null, c.name || c.username, badge(c)), h('small', null, '@' + c.username))));
+    h('button', { class: 'row', style: 'padding:0;flex:1;min-width:0', onclick: () => c.is_group ? openGroupInfo(c, ov) : openProfile(c.username) }, av(c, 'sm'), h('div', { class: 'who' }, h('b', null, c.name || c.username, c.is_group ? null : badge(c)), h('small', null, c.is_group ? t('group_t') : '@' + c.username))));
   ov.append(head, list, h('div', { class: 'bar' }, photo, input, mic, send));
   openOv(ov, () => { clearInterval(timer); clearInterval(recTimer); if (rec) rec.cancel(); if (S.tab === 'chats') loadChats(); });
   poll(true); timer = setInterval(() => poll(false), 3000);
@@ -1185,10 +1193,12 @@ async function profilePage(username, el, isTab, ov) {
   const actions = h('div', { style: 'display:flex;gap:8px;padding:0 14px 12px' });
   if (u.is_me) {
     actions.append(h('button', { class: 'btn', onclick: () => openEdit(() => { profilePage(S.me.username, el, isTab, ov); }) }, t('edit_profile')));
+    if (Number(u.req_count)) actions.append(h('button', { class: 'btn primary', onclick: () => openRequests(() => profilePage(S.me.username, el, isTab, ov)) }, t('req_n') + ' · ' + u.req_count));
   } else {
-    const fb = h('button', { class: 'btn' + (u.i_follow ? '' : ' primary'), onclick: async () => {
-      try { const r = await rpc('toggle_follow', { p_user: u.id }); if (r && r.ok) { u.i_follow = r.following; fb.textContent = u.i_follow ? t('following') : t('follow'); fb.className = 'btn' + (u.i_follow ? '' : ' primary'); fCount.textContent = fmtN(r.followers); } } catch (e) { toast(errText(e)); }
-    } }, u.i_follow ? t('following') : t('follow'));
+    const fl = () => u.i_follow ? t('following') : u.i_requested ? t('requested') : t('follow');
+    const fb = h('button', { class: 'btn' + (u.i_follow || u.i_requested ? '' : ' primary'), onclick: async () => {
+      try { const r = await rpc('toggle_follow', { p_user: u.id }); if (r && r.ok) { const was = u.i_follow; u.i_follow = r.following; u.i_requested = r.requested; fb.textContent = fl(); fb.className = 'btn' + (u.i_follow || u.i_requested ? '' : ' primary'); fCount.textContent = fmtN(r.followers); if (u.is_private && (was || u.i_follow)) profilePage(username, el, isTab, ov); } } catch (e) { toast(errText(e)); }
+    } }, fl());
     const mb = h('button', { class: 'btn', onclick: async () => {
       try { const id = await rpc('start_dm', { p_other: u.id }); if (!id) { toast(t('e_gen')); return; } openThread({ chat_id: id, other_id: u.id, username: u.username, name: u.name, avatar_url: u.avatar_url, verified_until: u.verified_until }); } catch (e) { toast(errText(e)); }
     } }, t('message'));
@@ -1205,13 +1215,13 @@ async function profilePage(username, el, isTab, ov) {
   const yr = new Date(u.created_at).getFullYear();
   el.append(h('div', { style: 'display:flex;gap:10px;align-items:center;padding:6px 14px' }, av(u, 'lg'),
       h('div', { class: 'stats' }, h('div', null, h('b', null, fmtN(Number(u.post_count) + Number(u.reel_count || 0))), h('span', null, t('posts'))), h('div', null, fCount, h('span', null, t('followers'))), h('div', null, h('b', null, fmtN(u.following_count)), h('span', null, t('following_n'))))),
-    h('div', { class: 'bigname', style: 'display:flex;align-items:center' }, h('span', { style: 'overflow:hidden;text-overflow:ellipsis;white-space:nowrap' }, u.name || u.username), badge(u)),
+    h('div', { class: 'bigname', style: 'display:flex;align-items:center' }, h('span', { style: 'overflow:hidden;text-overflow:ellipsis;white-space:nowrap' }, u.name || u.username), badge(u), u.is_private ? h('i', { html: ic('lock', 16), style: 'margin-inline-start:6px;opacity:.8' }) : null),
     h('div', { class: 'handle' }, '@' + u.username),
     u.bio ? h('div', { class: 'cap', style: 'padding:6px 14px' }, u.bio) : null,
     h('div', { class: 'since' }, t('since_y', { y: yr })),
-    actions, ptabs, grid, more);
+    actions, u.can_see ? ptabs : null, u.can_see ? grid : h('div', { class: 'empty' }, h('div', { html: ic('lock', 44) }), h('b', null, t('private_lock')), h('p', { class: 'hint' }, t('private_lock2'))), more);
   async function loadMore() {
-    if (busy || end) return; busy = true;
+    if (busy || end || !u.can_see) return; busy = true;
     try {
       const last = items[items.length - 1];
       const myKind = pkind; const rows2 = pkind === 'saved' ? await rpc('saved_posts', { p_offset: items.length, p_limit: 18 }) : await rpc('feed', { p_kind: pkind, p_user: u.id, p_before: last ? last.created_at : null, p_limit: 18 });
@@ -1440,7 +1450,9 @@ async function openNotifs() {
     const rows = await rpc('notifications');
     rpc('notif_mark').then(() => { S.notif = 0; paintNotifDot(); }).catch(() => {});
     body.textContent = '';
-    if (!rows.length) { body.append(h('div', { class: 'empty' }, t('n_empty'))); return; }
+    let rc = 0; try { rc = Number(await rpc('request_count')) || 0; } catch (er) {}
+    if (rc) body.append(h('button', { class: 'row', onclick: () => openRequests() }, h('div', { class: 'who' }, h('b', null, t('req_n') + ' · ' + rc))));
+    if (!rows.length && !rc) { body.append(h('div', { class: 'empty' }, t('n_empty'))); return; }
     rows.forEach(n => {
       const txt = n.kind === 'like' ? t('n_like') : n.kind === 'comment' ? t('n_comment') + ' ' + (n.body || '') : t('n_follow');
       const th = n.post_url ? h('div', { class: 'nth' }, thumbEl({ media_type: n.post_type, media_url: n.post_url })) : null;
@@ -1508,6 +1520,72 @@ function buildSearch() {
   box.append(h('div', { class: 'pad' }, inp), chips, res); loadTags(); run();
 }
 
+/* follow requests */
+function openRequests(done) {
+  const ov = h('div', { class: 'ov' }), body = h('div', { class: 'body' });
+  ov.append(topbar(t('req_title'), () => closeOv(ov)), body); openOv(ov, () => { done && done(); }); body.append(spinner());
+  (async () => {
+    try {
+      const rows = await rpc('follow_requests_list'); body.textContent = '';
+      if (!rows.length) { body.append(h('div', { class: 'empty' }, t('req_empty'))); return; }
+      rows.forEach(u => {
+        const row = h('div', { class: 'row' });
+        const ans = async ok => { try { const r = await rpc('answer_request', { p_user: u.id, p_accept: ok }); if (r && r.ok) row.remove(); if (!body.children.length) body.append(h('div', { class: 'empty' }, t('req_empty'))); } catch (er) { toast(errText(er)); } };
+        row.append(av(u), h('div', { class: 'who' }, h('b', null, u.name || u.username, badge(u)), h('small', null, '@' + u.username)),
+          h('button', { class: 'btn primary sm', onclick: () => ans(true) }, t('accept')), h('button', { class: 'btn sm', style: 'margin-inline-start:6px', onclick: () => ans(false) }, t('decline')));
+        body.append(row);
+      });
+    } catch (er) { body.textContent = ''; body.append(h('div', { class: 'empty' }, errText(er))); }
+  })();
+}
+
+/* groups */
+function openNewGroup(done) {
+  const ov = h('div', { class: 'ov' }), body = h('div', { class: 'body pad' });
+  const name = h('input', { type: 'text', maxlength: 40, placeholder: t('group_name'), 'aria-label': t('group_name') });
+  const q = h('input', { type: 'search', placeholder: t('search_ph'), 'aria-label': t('search_ph'), maxlength: 40 });
+  const list = h('div'); const picked = {}; let people = [];
+  function paint() {
+    const f = q.value.trim().toLowerCase(); list.textContent = '';
+    people.filter(u => !f || u.username.indexOf(f) >= 0 || (u.name || '').toLowerCase().indexOf(f) >= 0).forEach(u => {
+      list.append(h('button', { class: 'row', onclick: ev => { picked[u.id] = !picked[u.id]; ev.currentTarget.setAttribute('aria-pressed', picked[u.id] ? 'true' : 'false'); } }, av(u), h('div', { class: 'who' }, h('b', null, u.name || u.username, badge(u)), h('small', null, '@' + u.username)), h('span', { class: 'tick', html: ic('check', 20) })));
+    });
+    if (!list.firstChild) list.append(h('div', { class: 'empty' }, t('no_people')));
+  }
+  q.addEventListener('input', paint);
+  const go = h('button', { class: 'btn primary', style: 'margin-top:12px', onclick: async () => {
+    const ids = Object.keys(picked).filter(k => picked[k]), nm = name.value.trim();
+    if (!nm) { toast(t('group_name')); return; } if (!ids.length) { toast(t('pick_one')); return; }
+    if (modBad(nm)) { clientViolation('group'); return; }
+    go.disabled = true;
+    try { const r = await rpc('create_group', { p_title: nm, p_members: ids }); if (handleResult(r, t('group_made'))) { closeOv(ov); done && done(); setTimeout(() => openThread({ chat_id: r.id, is_group: true, name: nm, username: '' }), 350); } } catch (er) { toast(errText(er)); }
+    go.disabled = false;
+  } }, t('save'));
+  body.append(h('div', { class: 'field' }, name), h('div', { class: 'sec', style: 'padding:10px 0 4px' }, t('group_pick')), q, list, go);
+  ov.append(topbar(t('new_group'), () => closeOv(ov)), body); openOv(ov); list.append(spinner());
+  (async () => {
+    const seen = {}, out = [];
+    try { (await rpc('my_chats')).forEach(c => { if (!c.is_group && !seen[c.other_id]) { seen[c.other_id] = 1; out.push({ id: c.other_id, username: c.username, name: c.name, avatar_url: c.avatar_url, verified_until: c.verified_until }); } }); } catch (er) {}
+    try { (await rpc('search_users', { p_q: '' })).forEach(u => { if (!seen[u.id]) { seen[u.id] = 1; out.push(u); } }); } catch (er) {}
+    people = out; paint();
+  })();
+}
+function openGroupInfo(c, threadOv) {
+  const ov = h('div', { class: 'ov sheet' }), body = h('div', { class: 'body pad' });
+  ov.append(h('div', { class: 'grab' }), h('div', { class: 'sh-t' }, c.name, h('button', { 'aria-label': t('close'), html: ic('x', 22), onclick: () => closeOv(ov) })), body); openOv(ov); body.append(spinner());
+  (async () => {
+    try {
+      const rows = await rpc('group_members', { p_chat: c.chat_id }); body.textContent = '';
+      body.append(h('div', { class: 'sec', style: 'padding:0 0 6px' }, t('members') + ' · ' + rows.length));
+      rows.forEach(u => body.append(h('button', { class: 'row', onclick: () => { closeOv(ov); openProfile(u.username); } }, av(u), h('div', { class: 'who' }, h('b', null, u.name || u.username, badge(u)), h('small', null, '@' + u.username + (u.is_admin ? ' · admin' : ''))))));
+      body.append(h('button', { class: 'btn danger', style: 'margin-top:14px', onclick: async () => {
+        if (!await confirmBox(t('leave_q'), t('leave_group'))) return;
+        try { await rpc('leave_group', { p_chat: c.chat_id }); closeOv(ov); closeOv(threadOv); if (S.tab === 'chats') loadChats(); } catch (er) { toast(errText(er)); }
+      } }, t('leave_group')));
+    } catch (er) { body.textContent = ''; body.append(h('div', { class: 'empty' }, errText(er))); }
+  })();
+}
+
 /* ===== settings ===== */
 function openSettings() {
   const ov = h('div', { class: 'ov' }), body = h('div', { class: 'body pad' });
@@ -1523,11 +1601,18 @@ function openSettings() {
     [['def', t('bg_def')], ['ocean', t('bg_ocean')], ['sunset', t('bg_sunset')], ['forest', t('bg_forest')], ['mono', t('bg_mono')]].forEach(x => bgs.append(h('button', { class: 'chip', 'aria-pressed': cb === x[0] ? 'true' : 'false', onclick: () => { store.set('vg.bg', x[0]); applyLook(); paintLook(); } }, x[1])));
   };
   paintLook();
+  const privBtn = h('button', { class: 'chip', 'aria-pressed': 'false', disabled: true }, '…');
+  rpc('profile_of', { p_username: S.me.username }).then(r => {
+    let on = !!(r && r[0] && r[0].is_private); privBtn.disabled = false;
+    const paint = () => { privBtn.setAttribute('aria-pressed', on ? 'true' : 'false'); privBtn.textContent = on ? 'ON' : 'OFF'; }; paint();
+    privBtn.onclick = async () => { try { const x = await rpc('set_private', { p_on: !on }); if (x && x.ok) { on = x.private; paint(); } } catch (er) { toast(errText(er)); } };
+  }).catch(() => { privBtn.textContent = '!'; });
   const vtxt = isV(S.me) ? t('v_on', { d: new Date(S.me.verified_until).toLocaleDateString() }) : t('v_off');
   const row = (label, fn, cls) => h('button', { class: 'btn' + (cls ? ' ' + cls : ''), style: 'margin-bottom:10px', onclick: fn }, label);
   body.append(
     h('div', { class: 'card', style: 'margin-bottom:12px' }, h('b', null, t('language')), h('div', { style: 'height:8px' }), langs, h('div', { style: 'height:16px' }), h('b', null, t('theme')), h('div', { style: 'height:8px' }), themes, h('div', { style: 'height:16px' }), h('b', null, t('accent')), h('div', { style: 'height:8px' }), accs, h('div', { style: 'height:16px' }), h('b', null, t('bg')), h('div', { style: 'height:8px' }), bgs),
     h('div', { class: 'card', style: 'margin-bottom:12px' }, h('b', { style: 'display:flex;align-items:center' }, t('verified'), isV(S.me) ? badge(S.me) : null), h('p', { class: 'hint' }, vtxt), h('p', { class: 'hint' }, t('v_note'))),
+    h('div', { class: 'card', style: 'margin-bottom:12px;display:flex;align-items:center;gap:10px' }, h('div', { style: 'flex:1' }, h('b', null, t('private_acc')), h('p', { class: 'hint', style: 'margin:4px 0 0' }, t('private_hint'))), privBtn),
     S.me.is_owner ? row(t('admin'), openAdmin) : null,
     row(t('terms'), () => openLegal('terms')), row(t('privacy'), () => openLegal('privacy')), row(t('rules'), () => openLegal('rules')),
     row(t('logout'), doLogout),
